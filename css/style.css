@@ -1,7 +1,6 @@
 /*----------------- Sesion ------------*/
 
 /*----------------- BODY Y HEADER ------------*/
-/*----------------- BODY Y HEADER ------------*/
 html, body {
   height: 100%;
   min-height: 100vh;
@@ -20,6 +19,18 @@ html, body {
 body {
   flex: 1;
 }
+header {
+  position: relative;
+  padding-top: 10px;
+}
+
+
+header .logo {
+  width: 180px;
+  margin: -20px;
+
+}
+
 
 /* Contenedor principal para centrar el formulario */
 .main-content {
@@ -63,11 +74,6 @@ h2 {
     color: #ff99ff; /* morado neón claro */
 }
 
-.logo {
-    height: 150px;
-    width: 150px;
-    border: none;
-}
 
 /*----------------- FORM ------------*/
 /*----------------- FORM  ------------*/
@@ -85,8 +91,8 @@ form {
   border-radius: 22px;
   box-shadow: 0 0 24px #00ff9d66, 0 0 40px #9b30ff33;
   padding: 30px;
-  max-width: 420px;  /* ancho fijo simétrico */
-  margin: 80px auto; /* centrado con margen superior */
+  max-width: 400px;  /* ancho fijo simétrico */
+  margin: 50px auto; /* centrado con margen superior */
 }
 
 /*----------------- INPUTS Y LABELS ------------*/
@@ -193,23 +199,30 @@ form {
 
 
 /*----------------- Registro ------------*/
-
 /*----------------- HEADER ------------*/
-.texto-registro {
-    font-family: 'Orbitron', sans-serif;
-    color: #8d8d8d;
-    text-align: center;
+
+.texto-bienvenida {
+  font-size: 40px;
+  margin-top: -120px;
+  padding-top: 0;
 }
 
-/*----------------- FORMULARIO GAMER NEON (form-container2) ----------------*/
+.texto-registro {
+  font-size: 20px;
+  flex: 1;
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+}
+
+/*----------------- FORMULARIO GAMER NEON ----------------*/
 .form-container2 {
-  max-width: 700px;
-  width: 100%;
-  padding: 60px;
-  background: #150d1a; /* Fondo oscuro */
-  border-radius: 15px;
-  box-shadow: 0 0 25px rgba(0, 255, 170, 0.6);
+  max-width: 500px;
+  margin-top: -50px ;
+  padding: 30px;
+  background: rgba(24, 10, 30, 0.78); 
+  box-shadow: 0 0 24px #00ff9d66, 0 0 40px #9b30ff33;
   border: 2px solid #00ff9d;
+  border-radius: 22px;
   font-family: 'Orbitron', sans-serif;
   color: #e0e0e0;
 }
@@ -218,71 +231,46 @@ form {
 .form-container2 .form-label {
   font-size: 14px;
   font-weight: bold;
-  color: #00ffcc;
+  color: #f6f6f6;
   margin-bottom: 5px;
 }
 
-/* Inputs y selects */
-.form-container2 .form-control,
-.form-container2 .form-select {
-  background: #1a0f24;
-  border: 1px solid #7d4dff;
+/* Inputs y selects uniformes */
+.gamer-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #9b30ff;
   border-radius: 8px;
-  color: #e0e0e0;
-  padding: 10px;
+  background-color: #2a1e3e;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
   transition: all 0.3s ease;
 }
 
-.form-container2 .form-control:focus,
-.form-container2 .form-select:focus {
+.gamer-input:focus {
   outline: none;
   border-color: #00ffcc;
   box-shadow: 0 0 10px #00ffcc;
 }
 
-/* Checkbox */
-.form-container2 .form-check-label {
-  color: #ccc;
-  font-size: 13px;
-}
 
-.form-container2 .form-check-input {
-  accent-color: #00ffcc;
-}
+/* --------------BOTONES---------- */
 
-/* Botón */
-.form-container2 .btn-primary {
-  width: 100%;
-  background: linear-gradient(90deg, #00ffcc, #7d4dff);
+.btn-primary{
+  background-color: #00ff9d;
   border: none;
-  border-radius: 10px;
-  padding: 12px;
-  color: #0a0a0a;
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  color: #121212;
+  box-shadow: 0 0 10px #00ff9d, 0 0 20px #00ff9d;
 }
 
-.form-container2 .btn-primary:hover {
-  background: linear-gradient(90deg, #7d4dff, #00ffcc);
-  box-shadow: 0 0 15px #00ffcc;
+.btn-primary:hover{
+  background: linear-gradient(45deg, #9b30ff, #7d20d4);
   color: #fff;
+  box-shadow: 0 0 25px #9b30ff, 0 0 50px #9b30ff;
 }
-
-/* Responsividad para móviles */
-@media (max-width: 768px) {
-  .form-container2 {
-    padding: 25px;
-  }
-}
-
-
 
 
 /*----------------- FOOTER ------------*/
-
 footer {
   width: 100%;
   padding: 20px 0 10px 0;
@@ -307,7 +295,7 @@ footer {
 }
 
 .footer-links a:hover { 
-    color:  #9b30ff;
+  color: #9b30ff;
 }
 
 .footer-copy {

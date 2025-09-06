@@ -10,64 +10,60 @@
 </head>
 <body>
     <header>
-        <h1>Bienvenido</h1>
-        <h2>Nuevo Usuario </h2>
-        <p class="texto-registro">la pagina web #1 para los gamers</p>
+        <img src="img/logo_web1.png" class="logo" alt="Logo Next Play">
+        <h1 class="texto-bienvenida">Bienvenido</h1>
+        <h2 class="texto-registro">Nuevo Usuario </h2>
     </header>
 
     <div class="main-content">
-          <form class="form-container2">
-      <div class="col-md-6">
-        <label for="inputEmail4" class="form-label">Email</label>
-        <input type="email" class="form-control" id="inputEmail4">
-      </div>
-      <div class="col-md-6">
-        <label for="inputPassword4" class="form-label">Contraseña</label>
-        <input type="password" class="form-control" id="inputPassword4">
-      </div>
-      <div class="col-12">
-        <label for="inputAddress" class="form-label">Direccion</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-      </div>
-      <div class="col-12">
-        <label for="inputAddress2" class="form-label">Direccion 2</label>
-        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-      </div>
-      <div class="col-md-6">
-        <label for="inputCity" class="form-label">Ciudad</label>
-        <input type="text" class="form-control" id="inputCity">
-      </div>
-      <div class="col-md-2">
-        <label for="inputZip" class="form-label">Codigo Postal</label>
-        <input type="text" class="form-control" id="inputZip">
-      </div>
-      <div class="col-md-4">
-        <label for="inputState" class="form-label">Genero</label>
-        <select id="inputState" class="form-select">
-          <option selected>Seleccione Género</option>
-          <option>Femenino</option>
-          <option>Masculino</option>
-          <option>Otros</option>
-        </select>
-         <i class="fa-solid fa-venus-mars"></i>
-        <small class="error-msg">Este campo es obligatorio</small>
+  <form class="form-container2">
 
-      </div>
-      <div class="col-12">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="gridCheck">
-          <label class="form-check-label" for="gridCheck">
-            Acepta Terminos y Condiciones
-          </label>
-        </div>
-      </div>
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary">Sign in</button>
-      </div>
-    </form>
+    <div class="mb-3">
+      <label for="inputEmail4" class="form-label">Email</label>
+      <input type="email" class="form-control gamer-input" id="inputEmail4">
     </div>
 
+    <div class="mb-3">
+      <label for="inputPassword4" class="form-label">Contraseña</label>
+      <input type="password" class="form-control gamer-input" id="inputPassword4">
     </div>
+
+    <div class="mb-3">
+      <label for="inputAddress" class="form-label">Dirección</label>
+      <input type="text" class="form-control gamer-input" id="inputAddress" placeholder="1234 Main St">
+    </div>
+
+    <div class="mb-3">
+      <label for="inputCity" class="form-label">Comuna</label>
+      <input type="text" class="form-control gamer-input" id="inputCity">
+    </div>
+
+    <div class="mb-3">
+      <label for="inputState" class="form-label">Género</label>
+      <select id="inputState" class="form-select gamer-input">
+        <option selected>Seleccione Género</option>
+        <option>Femenino</option>
+        <option>Masculino</option>
+        <option>Otros</option>
+      </select>
+      <small class="error-msg">Este campo es obligatorio</small>
+    </div>
+
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Acepta Términos y Condiciones
+      </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Registrarse</button>
+    <button type="reset" class="btn btn-primary1" onclick="window.location.href='sesion.html'">Volver</button>
+  </form>
+</div>
+
+
+
+
     <footer>
     <div class="footer-links">
         <a href="#">Términos y Condiciones</a>
@@ -78,6 +74,56 @@
         <span>Copyright © 2025 NextPlay. Todos los derechos reservados.</span>
     </div>
     </footer>
+
+    <script>
+const form = document.querySelector('.form-container2');
+
+form.addEventListener('submit', function(event) {
+    event.preventDefault(); // evita enviar el formulario por defecto
+
+    let hayErrores = false;
+
+    // Limpiar errores previos
+    document.querySelectorAll('.mb-3').forEach(c => c.classList.remove('error'));
+
+    // Función para validar campos de texto
+    function validarCampo(id) {
+        const input = document.getElementById(id);
+        const contenedor = input.closest('.mb-3');
+        if (!input.value.trim()) {
+            contenedor.classList.add('error');
+            hayErrores = true;
+        }
+    }
+
+    validarCampo('inputEmail4');
+    validarCampo('inputPassword4');
+    validarCampo('inputAddress');
+    validarCampo('inputCity');
+
+    // Validar select
+    const select = document.getElementById('inputState');
+    if (select.value === "Seleccione Género") {
+        select.closest('.mb-3').classList.add('error');
+        hayErrores = true;
+    }
+
+    // Validar checkbox
+    const checkbox = document.getElementById('gridCheck');
+    if (!checkbox.checked) {
+        checkbox.closest('.form-check').classList.add('error');
+        hayErrores = true;
+    }
+
+    // Si no hay errores, enviar el formulario
+    if (!hayErrores) {
+        form.submit();
+    } else {
+        alert('Por favor, completa todos los campos obligatorios.');
+    }
+});
+</script>
+
 
 </body>
 </html>

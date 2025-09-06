@@ -18,15 +18,15 @@
 
     
     <div class="form-container">
-        <form>
+        <form id="sesionForm">
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Email</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input type="email" class="form-control" id="exampleInputEmail1" required>
         <div id="emailHelp" class="form-text">Nunca compartiremos tu correo electrónico con nadie más.</div>
     </div>
     <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" aria-describedby="passwordHelp">
+        <input type="password" class="form-control" id="exampleInputPassword1" required>
         <div class="recuperar-password"> <a href="#">Olvidaste tu contraseña?</a></div>
     </div>
     <div class="mb-3 form-check">
@@ -49,5 +49,17 @@
         <span>Copyright © 2025 NextPlay. Todos los derechos reservados.</span>
     </div>
     </footer>
+
+    <div id="message"></div>
+
+    <script>
+        document.getElementById('sesionForm').addEventListener('submit', function(event) {
+            event.preventDefault(); //evitar el envio del formulario vacio
+            const email = document.getElementById('exampleInputEmail1').value;
+            const password = document.getElementById('exampleInputPassword1').value;
+            document.getElementById('message').innerText = `¡Bienvenido, ${name}!`;
+            this.reset();
+        })
+    </script>
 </body>
 </html>
