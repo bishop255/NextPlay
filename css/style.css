@@ -17,6 +17,10 @@ html, body {
   flex-direction: column;
 }
 
+body {
+  flex: 1;
+}
+
 /* Contenedor principal para centrar el formulario */
 .main-content {
   flex: 1;
