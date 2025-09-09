@@ -57,18 +57,25 @@ header h1 .h1-index{
   top: 15px;            /* lo bajamos un poco dentro del header */
   display: flex;        /* input + botón en fila */
   align-items: center;
-  gap: 8px;             /* espacio entre input y botón */
+  gap: 8px;  
+             /* espacio entre input y botón */
 }
 
 /* Input más pequeño */
 .search-index .form-control {
-  width: 220px;         /* cambia el tamaño aquí */
+  width: 200px;         /* cambia el tamaño aquí */
   border-radius: 6px;
   padding: 6px 10px;
+  background-color: #00ff9d;
+  border: 1px solid #9b30ff;
+  
+
 }
 
 /* Botón */
-.search-index .btn {
+.btn-primary3 {
+  background-color: #00ff9d;
+  border: 1px solid #9b30ff;
   border-radius: 6px;
   padding: 6px 12px;
 }
@@ -76,8 +83,7 @@ header h1 .h1-index{
 
 
 .navbar form .form-control {
-  background-color: #00ff9d;
-  border: 1px solid #9b30ff;
+
   color: #121212;
 }
 
