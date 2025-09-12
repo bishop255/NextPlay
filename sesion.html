@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/scripts.js"></script>
 </head>
 <body>
     <header>
@@ -16,7 +17,8 @@
         <p class="nuevo-usuario">¿Nuevo usuario? <a href="registro.html"> Crear una cuenta</a></p>
     </header>
 
-    
+
+    <!-- Formulario -->
     <div class="form-container">
         <form id="sesionForm">
     <div class="mb-3">
@@ -31,14 +33,15 @@
     </div>
     <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Manterneme Contectado</label>
+        <label class="form-check-label" for="exampleCheck1">Manterneme Conectado</label>
     </div>
     <button type="submit" class="btn btn-primary">Iniciar sesion</button>
-    <button type="submit" class="btn btn-primary1" onclick="window.location.href='index.html'">Volver</button>
+    <button type="button" class="btn btn-primary1" onclick="window.location.href='index.html'">Volver</button>
     </form>
-
-
     </div>
+
+
+    <!-- Footer -->
     <footer>
     <div class="footer-links">
         <a href="#">Términos y Condiciones</a>
@@ -50,16 +53,14 @@
     </div>
     </footer>
 
-    <div id="message"></div>
 
+    <!-- JS -->
     <script>
-        document.getElementById('sesionForm').addEventListener('submit', function(event) {
-            event.preventDefault(); //evitar el envio del formulario vacio
-            const email = document.getElementById('exampleInputEmail1').value;
-            const password = document.getElementById('exampleInputPassword1').value;
-            document.getElementById('message').innerText = `¡Bienvenido, ${name}!`;
-            this.reset();
-        })
+        document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('#sesionForm'); // con el id
+        form.addEventListener('submit', validarSesion);
+        });
     </script>
+
 </body>
 </html>
