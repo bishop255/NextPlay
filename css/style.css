@@ -549,3 +549,20 @@ form  {
 }
 
 
+/* --------------acerca.html---------- */
+
+.p-acerca {
+  margin-top: 50px;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+
+}
+
+.mantenimiento {
+  color: white;
+  margin-top: 100px;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 50px;
+}
