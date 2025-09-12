@@ -17,26 +17,26 @@ header h1 .h1-index{
 
 /* ---------------- NAVBAR NEON ---------------- */
 .navbar {
+  position: relative;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
   background-image: url('../img/background_gradient.png');
-  background-color: #121212 !important;
+  background-color: #121212;
   box-shadow: 0 0 15px #00ff9d44, 0 0 25px #9b30ff33;
-}
-
-
-.navbar-nav .nav-link {
+  padding: 0 32px;
+  height: 80px;
   font-family: 'Orbitron', sans-serif;
-  color: #e0e0e0 !important;
-  transition: all 0.3s ease;
 }
 
-.navbar-nav .nav-link:hover {
-  color: #00ff9d !important;
-  text-shadow: 0 0 5px #00ff9d, 0 0 10px #9b30ff;
+.navbar .container-fluid {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0;
 }
 
-/* ---------------- LOGO ---------------- */
-
-
+/* Logo */
 .navbar-brand {
   display: flex;
   align-items: center;
@@ -44,106 +44,85 @@ header h1 .h1-index{
 }
 
 .navbar-brand .logo-index {
-  width: 80px;        /* tamaño uniforme */
-  height: 80px;
-  object-fit: contain; /* mantiene proporción */
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
 }
 
-/* ---------------- BUSCADOR ---------------- */
-/* Contenedor del buscador */
+/* Menú de navegación */
+.navbar-nav {
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-wrap: nowrap;
+}
+
+.navbar-nav .nav-link {
+  font-family: 'Orbitron', sans-serif;
+  color: #e0e0e0;
+  padding: 8px;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #00ff9d;
+  text-shadow: 0 0 5px #00ff9d, 0 0 10px #9b30ff;
+}
+
+/* Barra de búsqueda */
 .search-index {
-  position: absolute;   /* lo sacamos del flujo normal */
-  right: 150px;         /* lo movemos a la derecha (ajusta según tu navbar) */
-  top: 15px;            /* lo bajamos un poco dentro del header */
-  display: flex;        /* input + botón en fila */
+  display: flex;
   align-items: center;
-  gap: 8px;  
-             /* espacio entre input y botón */
+  gap: 8px;
+  margin-left: auto;
+  max-width: 300px;
 }
 
-/* Input más pequeño */
 .search-index .form-control {
-  width: 200px;         /* cambia el tamaño aquí */
+  width: 100%;
   border-radius: 6px;
   padding: 6px 10px;
-  background-color: #00ff9d;
-  border: 1px solid #9b30ff;
-  
-
+  background-color: #00ff9d;;
+  border: 1px solid #753ea9;
 }
 
-/* Botón */
-.btn-primary3 {
-  background-color: #00ff9d;
-  border: 1px solid #9b30ff;
-  border-radius: 6px;
-  padding: 6px 12px;
-}
-
-
-
-.navbar form .form-control {
-
+.search-index .form-control:focus {
+  border-color: #ffffff;
   color: #121212;
 }
 
-.navbar form .form-control:focus {
-  border-color: #00ff9d;
-  box-shadow: 0 0 10px #00ff9d;
+
+
+.search-index .btn-primary3:hover {
+  background: linear-gradient(45deg, #9b30ff, #7d20d4);
 }
 
-.navbar form .btn {
-  background-color: #00ff9d;
-  color: #121212;
+/* Botones carrito, login y registro */
+.navbar .d-flex.align-items-center {
+  gap: 5px;
+}
+
+.navbar .btn-outline-light,
+.navbar .btn-success {
   font-family: 'Orbitron', sans-serif;
   font-weight: bold;
   border-radius: 8px;
-  box-shadow: 0 0 10px #00ff9d, 0 0 20px #00ff9d;
   transition: all 0.3s ease;
 }
 
-.navbar form .btn:hover {
-  background: linear-gradient(45deg, #9b30ff, #7d20d4);
-  color: #fff;
-  box-shadow: 0 0 25px #9b30ff, 0 0 50px #9b30ff;
-}
-
-/* ---------------- BOTÓN REGISTRO ---------------- */
-.btn btn-success {
+.btn-outline-light:hover {
   background-color: #00ff9d;
-  border: none;
   color: #121212;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: bold;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #00ff9d, 0 0 25px #00ff9d;
-  transition: all 0.3s ease;
+
 }
 
 .btn-success:hover {
   background: linear-gradient(45deg, #9b30ff, #7d20d4);
   color: #fff;
-  box-shadow: 0 0 30px #9b30ff, 0 0 60px #9b30ff;
+
 }
 
-/* ---------------- BOTÓN BUSCAR ---------------- */
-.navbar form .btn btn-primary{
-  background-color: #00ff9d;
-  border: none;
-  color: #121212;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: bold;
-  border-radius: 8px;
-  padding: 8px 16px;
-  box-shadow: 0 0 10px #00ff9d, 0 0 25px #00ff9d;
-  transition: all 0.3s ease;
-}
-
-.navbar form .btn:hover {
-  background: linear-gradient(45deg, #9b30ff, #7d20d4);
-  color: #fff;
-  box-shadow: 0 0 25px #9b30ff, 0 0 50px #9b30ff;
-}
 
 /* ---------------- CARRUSEL ---------------- */
 .h3-carrusel {
@@ -167,28 +146,27 @@ header h1 .h1-index{
 }
 
 
-
 .carousel {
   margin-top: 100px; /* separa del navbar */
 }
 
 .carousel-item img {
   width: 100%;
-  max-height: 300px;   /* altura máxima controlada */
+  max-height: 100px;   /* altura máxima controlada */
   object-fit: cover;   /* rellena sin deformar */
   border-radius: 12px; /* esquinas redondeadas */
 }
 
 /* Indicadores (puntitos) */
 .carousel-indicators button {
-  background-color: #9b30ff !important;
+  background-color: #9b30ff;
   width: 12px;
   height: 12px;
   border-radius: 50%;
 }
 
 .carousel-indicators .active {
-  background-color: #00ff9d !important;
+  background-color: #00ff9d ;
 }
 
 /* Flechas */
@@ -217,18 +195,52 @@ header h1 .h1-index{
   box-shadow: 0 0 15px #00ff9d, 0 0 30px #00ff9d;
 }
 
+/* ---------------- Productos ---------------- */
+
+.productos {
+  margin-top: 20px;
+  font-family: 'Orbitron', sans-serif;
+  align-items: center;
+  text-align: center;
+  font-size: 50px;
+  color: white;
+}
+
+.col-4 {
+  display: flex;
+  justify-content: center; /* centra las cards horizontalmente */
+  gap: 10px; /* espacio entre cada card */
+  margin-top: 70px;
+  flex-wrap: wrap; /* permite que bajen si no caben en una sola fila */
+  margin-block-end: auto;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 500px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background: #fff;
+  box-shadow: 0 0 15px #00ff9d, 0 0 30px #00ff9d;
+}
+
+
+
+
 /*---------------- FOOTER --------------------+*/
 footer {
-  width: 100%;
-  padding: 20px 0 10px 0;
-  color: #e0e0e0;
-  text-align: center;
-  font-size: 14px;
-  position: fixed;
+  margin-top: 80px;
   bottom: 0;
   left: 0;
-  z-index: 10;
+  width: 100%;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  flex: 1;
 }
+
 
 .footer-links {
   margin-bottom: 5px;
@@ -261,6 +273,7 @@ html, body {
   margin: 0;
   padding: 0;
   background-image: url('../img/background_gradient.png');
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -268,6 +281,7 @@ html, body {
   color: #e0e0e0;
   display: flex;
   flex-direction: column;
+  overflow: auto;
 }
 
 body {
@@ -524,35 +538,3 @@ form  {
 }
 
 
-/*----------------- FOOTER ------------*/
-footer {
-  width: 100%;
-  padding: 20px 0 10px 0;
-  color: #e0e0e0;
-  text-align: center;
-  font-size: 14px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-}
-
-.footer-links {
-  margin-bottom: 5px;
-}
-
-.footer-links a {
-  color: #e0e0e0;
-  margin: 0 15px;
-  text-decoration: none;
-  font-weight: 400;
-}
-
-.footer-links a:hover { 
-  color: #9b30ff;
-}
-
-.footer-copy {
-  opacity: 0.7;
-  font-size: 13px;
-}

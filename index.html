@@ -13,13 +13,8 @@
   <style>
     /* Ajuste de carrusel */
     .carousel-item img {
-      max-height: 500px;
+      max-height: 600px;
       object-fit: cover;
-    }
-    /* Asegurar el logo */
-    .navbar-brand img {
-      width: 40px;
-      height: 40px;
     }
   </style>
 </head>
@@ -54,9 +49,7 @@
         <!-- Barra de búsqueda -->
         <form class="search-index">
           <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Buscar">
-          <button class="btn-primary3" type="submit">Buscar</button>
         </form>
-
         <!-- Carrito y botones -->
         <div class="d-flex align-items-center">
           <a class="btn btn-outline-light me-2" href="carrito.html">
@@ -94,7 +87,7 @@
       <div class="carousel-item">
         <img src="img/pokemon.jpg" class="d-block w-100" alt="Imagen 3">
         <div class="carousel-caption d-none d-md-block">
-          <h3 cla>$29.990</h3>
+          <h3 class="h3-carrusel">$29.990</h3>
           <button class="btn-carrusel">COMPRAR YA!</button>
         </div>
       </div>
@@ -109,6 +102,70 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Siguiente</span>
     </button>
+  </div>
+      <div>
+        <h1 class="productos">Recomendado para ti</h1>
+      </div>
+      <div class="container-card">
+      <div class="row">
+        <div class="col-4">
+          <div class="card" style="width: 20rem">
+            <img src="img/genshin.png" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Recarga de protogemas</h5>
+              <p class="card-text">Precio: $29.990</p>
+              <p class="card-text">1980 Protogemas + 260 Bonus</p>
+              <button
+                class="btn btn-secondary btn-sm"
+                onclick="anadirAlCarrito('Xyris, the Writhing Storm',3780)"
+              >
+                Añadir al Carrito
+              </button>
+              <button type="button" class="btn btn-success">Añadir al carrito</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="card" style="width: 20rem">
+            <img src="img/elden_ring.png" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Elden Ring: Shadow of the Erdtree (DLC)</h5>
+              <p class="card-text">Precio: $45.990</p>
+              <p class="card-text">Se requiere el juego base Elden Ring Steam Key para poder jugar.</p>
+              <button
+                class="btn btn-secondary btn-sm"
+                onclick="anadirAlCarrito('Niv Mizzet',11780)"
+              >
+                Añadir al Carrito
+              </button>
+              <button type="button" class="btn btn-success">Añadir al carrito</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="card" style="width: 20rem">
+            <img src="img/skin_dva.png" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Overwatch® 2: D.VA EMD Skin (DLC)</h5>
+              <p class="card-text">Precio: $9.990</p>
+              <p class="card-text">Cosmetico para el personaje D.VA</p>
+              <button
+                class="btn btn-secondary btn-sm"
+                onclick="anadirAlCarrito('Ayara, First of Locthwain',3500)"
+              >
+                Añadir al Carrito
+              </button>
+              <button type="button" class="btn btn-success">Añadir al carrito</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
   </div>
 
   
