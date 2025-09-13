@@ -1,129 +1,173 @@
-// FUNCIONES DEL CARRITO DE COMPRAS //  
+/* =======================================
+   NextPlay - scripts.js
+   Incluye:
+   - Lógica del carrito de compras
+   - Validaciones de registro
+   - Validaciones de inicio de sesión
+   ======================================= */
 
 
+/* =======================================
+   FUNCIONES DEL CARRITO DE COMPRAS
+   ======================================= */
+
+// Agregar producto al carrito
 function anadirAlCarrito(nombre, precio) {
-  // total += precio;
-  // document.getElementById("total").innerText = total;
-  // document.getElementById("mensaje").innerText = "Productos en el carrito:";
-  // document.getElementById("totalInput").value = total;
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  carrito.push({ nombre, precio });
+  // Validación: si el juego ya existe, preguntar antes de duplicar
+  const existe = carrito.find(p => p.nombre === nombre);
+  if (existe) {
+    const confirmar = confirm(`El juego "${nombre}" ya fue agregado. ¿Quieres agregarlo de nuevo?`);
+    if (!confirmar) {
+      return; // si el usuario cancela, no se agrega
+    }
+  }
+
+  // Agregar producto
+  carrito.push({ nombre, precio: Number(precio) });
   localStorage.setItem("carrito", JSON.stringify(carrito));
-  alert(`${nombre} ha sido agregado al carrito.`);
+
+  // Avisar al usuario
+  alert(`Se agregó "${nombre}" al carrito ✅`);
 }
 
+// Mostrar el contenido del carrito en carrito.html
 function mostrarCarrito() {
-    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    const carritoBody = document.getElementById('carrito');
-    carritoBody.innerHTML = ''; // Para limipiar el carrito de compras
+  const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  const carritoBody = document.getElementById('carrito');
+  const totalEl = document.getElementById("total");
 
-    let total = 0;
-    carrito.forEach((producto,index) => {
-        total += producto.precio;
-        carritoBody.innerHTML += `
-        <tr>
-            <td>${producto.nombre}</td>
-            <td>$${producto.precio}</td>
-            <td><button class="btn btn-warning btn-sm" onclick="eliminarDelCarrito(${index})">Eliminar</button></td>
-            </tr>`;
-    });
+  if (!carritoBody || !totalEl) return; // seguridad
 
-    if (carrito.length === 0) {
-        carritoBody.innerHTML =
-        '<tr><td colspan="3">No hay productos en el carrito.</td></tr>';
-    }
+  carritoBody.innerHTML = ''; // limpiar tabla
+  let total = 0;
 
-    document.getElementById("total").innerText = `TOTAL: $${total}`;
+  carrito.forEach((producto, index) => {
+    total += producto.precio;
+    carritoBody.innerHTML += `
+      <tr>
+        <td>${producto.nombre}</td>
+        <td class="text-center">${Number(producto.precio).toLocaleString('es-CL',{style:'currency',currency:'CLP'})}</td>
+        <td class="text-center">
+          <button class="btn btn-warning btn-sm" onclick="eliminarDelCarrito(${index})">Eliminar</button>
+        </td>
+      </tr>`;
+  });
 
+  if (carrito.length === 0) {
+    carritoBody.innerHTML = '<tr><td colspan="3" class="text-center">No hay productos en el carrito.</td></tr>';
+  }
+
+  // Actualizar total formateado
+  totalEl.innerText = `TOTAL: ${total.toLocaleString('es-CL',{style:'currency',currency:'CLP'})}`;
 }
 
+// Eliminar producto del carrito
 function eliminarDelCarrito(index) {
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-    carrito.splice(index,1); // eliminamos el producto
-    localStorage.setItem("carrito",JSON.stringify(carrito)) //Actualizamos el localStorage
-    mostrarCarrito();
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  carrito.splice(index, 1); // eliminar por índice
+  localStorage.setItem("carrito", JSON.stringify(carrito)); // actualizar localStorage
+  mostrarCarrito(); // refrescar vista
 }
 
-
+// Finalizar compra
 function pagar() {
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-    if (carrito.length === 0) {
-        alert("No hay productos en el carrito para pagar");
-    } else {
-        alert("Pago recibido. Gracias por su compra!");
-        localStorage.removeItem("carrito"); // vaciar el carrito
-        mostrarCarrito(); // actualizar la vista del carrito
-        document.getElementById("total").innerText = "TOTAL: $0"; // limpiar total
-    }
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  // Validación: carrito vacío
+  if (carrito.length === 0) {
+    alert("No puedes finalizar la compra: tu carrito está vacío.");
+    return;
+  }
+
+  // Confirmación antes de pagar
+  const confirmar = confirm("¿Estás seguro de que quieres finalizar la compra o prefieres seguir comprando?");
+  if (!confirmar) {
+    alert("Puedes seguir comprando en la tienda 🛒");
+    return;
+  }
+
+  // Si confirma, mensaje de éxito
+  alert("🎉 ¡Felicidades por su compra! 🎉");
+
+  // Vaciar carrito después de comprar
+  localStorage.removeItem("carrito");
+  mostrarCarrito();
+  document.getElementById("total").innerText = "TOTAL: $0";
 }
 
 
-
-// FUNCIONES REGISTRO //
+/* =======================================
+   FUNCIONES REGISTRO
+   ======================================= */
 
 function registarUsuario() {
-    const form = document.querySelector('.form-container2');
+  const form = document.querySelector('.form-container2');
 
-    form.addEventListener('submit', function(event) { 
-        event.preventDefault();
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
 
-        let hayErrores = false;
+    let hayErrores = false;
 
-        // Limpiar errores 
-        document.querySelectorAll('.mb-3').forEach(c => c.classList.remove('error'));
+    // Limpiar errores previos
+    document.querySelectorAll('.mb-3').forEach(c => c.classList.remove('error'));
 
-        // Validar campos de texto
-        function validarCampo(id) {
-            const input = document.getElementById(id);
-            const contenedor = input.closest('.mb-3');
-            if (!input.value.trim()) {
-                contenedor.classList.add('error');
-                hayErrores = true;
-            }
-        }
+    // Validar campos de texto obligatorios
+    function validarCampo(id) {
+      const input = document.getElementById(id);
+      const contenedor = input.closest('.mb-3');
+      if (!input.value.trim()) {
+        contenedor.classList.add('error');
+        hayErrores = true;
+      }
+    }
 
-        validarCampo('inputEmail4');
-        validarCampo('inputPassword4');
-        validarCampo('inputAddress');
-        validarCampo('inputCity');
+    validarCampo('inputEmail4');
+    validarCampo('inputPassword4');
+    validarCampo('inputAddress');
+    validarCampo('inputCity');
 
-        // Validar select
-        const select = document.getElementById('inputState');
-        if (select.value === "Seleccione Género") {
-            select.closest('.mb-3').classList.add('error');
-            hayErrores = true;
-        }
+    // Validar select
+    const select = document.getElementById('inputState');
+    if (select.value === "Seleccione Género") {
+      select.closest('.mb-3').classList.add('error');
+      hayErrores = true;
+    }
 
-        // Validar checkbox
-        const checkbox = document.getElementById('gridCheck');
-        if (!checkbox.checked) {
-            checkbox.closest('.form-check').classList.add('error');
-            hayErrores = true;
-        }
+    // Validar checkbox
+    const checkbox = document.getElementById('gridCheck');
+    if (!checkbox.checked) {
+      checkbox.closest('.form-check').classList.add('error');
+      hayErrores = true;
+    }
 
-        if (!hayErrores) {
-            alert('Registro Exitoso, Bienvenido a la comunidad de NextPlay')
-            form.submit();
-            window.location.href = "index.html";
-        } else {
-            alert('Por favor, completa todos los campos obligatorios.');
-        }
-    });
+    // Resultado
+    if (!hayErrores) {
+      alert('Registro Exitoso, Bienvenido a la comunidad de NextPlay');
+      form.submit();
+      window.location.href = "index.html";
+    } else {
+      alert('Por favor, completa todos los campos obligatorios.');
+    }
+  });
 }
 
-// FUNCIONES INICIO DE SESION //
+
+/* =======================================
+   FUNCIONES INICIO DE SESION
+   ======================================= */
 
 function validarSesion(event) {
-    event.preventDefault(); // evitar el envío por defecto
+  event.preventDefault(); // evitar envío normal
 
-    const email = document.getElementById('exampleInputEmail1').value;
-    const password = document.getElementById('exampleInputPassword1').value;
+  const email = document.getElementById('exampleInputEmail1').value;
+  const password = document.getElementById('exampleInputPassword1').value;
 
-    if (!email || !password) {
-        alert('Ingrese su email y su contraseña correctamente!');
-    } else {
-        alert('Bienvenido de vuelta amigo gamer!');
-        window.location.href = "index.html";
-    }
+  if (!email || !password) {
+    alert('Ingrese su email y su contraseña correctamente!');
+  } else {
+    alert('Bienvenido de vuelta amigo gamer!');
+    window.location.href = "index.html";
+  }
 }
